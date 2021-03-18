@@ -1,6 +1,5 @@
 import Header from '../components/header'
 import ExtLink from '../components/ext-link'
-import Features from '../components/features'
 import sharedStyles from '../styles/shared.module.css'
 
 export default function Index() {
@@ -16,9 +15,7 @@ export default function Index() {
         />
         <h1>Tech Blog</h1>
         <h2>
-          このブログは&nbsp;
-          <ExtLink href="https://github.com/ijjk/notion-blog">Notion Blog</ExtLink>
-          &nbsp;で出来ています
+          This blog is made up of <ExtLink href="https://github.com/ijjk/notion-blog">Notion Blog</ExtLink>.
         </h2>
       </div>
     </>
