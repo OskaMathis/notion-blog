@@ -44,7 +44,7 @@ export default function Contact() {
         <h1 style={{ marginTop: 0 }}>Contact</h1>
 
         <div className={contactStyles.name}>
-          JJ Kasper - Server-Side Engineer @{' '}
+          Yushi Sako - Server-Side Engineer @{' '}
           <ExtLink href="https://www.yumemi.co.jp/">Yumemi</ExtLink>
         </div>
 

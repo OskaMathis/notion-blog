@@ -16,18 +16,10 @@ export default function Index() {
         />
         <h1>Tech Blog</h1>
         <h2>
-          このブログは
+          このブログは&nbsp;
           <ExtLink href="https://github.com/ijjk/notion-blog">Notion Blog</ExtLink>
-          で出来ています
+          &nbsp;で出来ています
         </h2>
-
-        <Features />
-
-        <div className="explanation">
-          <p>
-            適当にナレッジを書き溜めていきます
-          </p>
-        </div>
       </div>
     </>
   )
