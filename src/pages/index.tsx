@@ -15,7 +15,7 @@ export default function Index() {
         />
         <h1>My Notion Blog</h1>
         <h2>
-          This blog is made up of <ExtLink href="https://github.com/ijjk/notion-blog">Notion Blog</ExtLink>.
+          Powered by <ExtLink href="https://github.com/ijjk/notion-blog">Notion Blog</ExtLink>
         </h2>
       </div>
     </>
