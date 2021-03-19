@@ -13,7 +13,7 @@ export default function Index() {
           width="250"
           alt="Vercel + Notion"
         />
-        <h1>Tech Blog</h1>
+        <h1>My Notion Blog</h1>
         <h2>
           This blog is made up of <ExtLink href="https://github.com/ijjk/notion-blog">Notion Blog</ExtLink>.
         </h2>
