@@ -4,7 +4,7 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { textBlock } from '../../lib/notion/renderers'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import getNotionUsers from '../../lib/notion/getNotionUsers'
-import { postIsPublished, getBlogLink } from '../../lib/blog-helpers'
+import { postIsPublished, getArticleLink } from '../../lib/article-helpers'
 
 function mapToAuthor(author) {
   return `<author><name>${author.full_name}</name></author>`
@@ -77,7 +77,7 @@ export default async function(req: IncomingMessage, res: ServerResponse) {
 
     posts.forEach(post => {
       post.authors = post.authors.map(id => users[id])
-      post.link = getBlogLink(post.Slug)
+      post.link = getArticleLink(post.Slug)
     })
 
     res.write(createRSS(posts))
