@@ -1,7 +1,7 @@
 import { values } from './rpc'
 import Slugger from 'github-slugger'
 import queryCollection from './queryCollection'
-import { normalizeSlug } from '../blog-helpers'
+import { normalizeSlug } from '../article-helpers'
 
 export default async function loadTable(collectionBlock: any, isPosts = false) {
   const slugger = new Slugger()

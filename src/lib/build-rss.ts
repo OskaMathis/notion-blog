@@ -5,7 +5,7 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { textBlock } from './notion/renderers'
 import getBlogIndex from './notion/getBlogIndex'
 import getNotionUsers from './notion/getNotionUsers'
-import { postIsPublished, getBlogLink } from './blog-helpers'
+import { postIsPublished, getArticleLink } from './article-helpers'
 
 // must use weird syntax to bypass auto replacing of NODE_ENV
 process.env['NODE' + '_ENV'] = 'production'
@@ -92,7 +92,7 @@ async function main() {
 
   blogPosts.forEach(post => {
     post.authors = post.authors.map(id => users[id])
-    post.link = getBlogLink(post.Slug)
+    post.link = getArticleLink(post.Slug)
     post.title = post.Page
     post.date = post.Date
   })

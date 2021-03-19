@@ -5,13 +5,13 @@ import Header from '../../components/header'
 import Heading from '../../components/heading'
 import components from '../../components/dynamic'
 import ReactJSXParser from '@zeit/react-jsx-parser'
-import blogStyles from '../../styles/blog.module.css'
+import blogStyles from '../../styles/article.module.css'
 import { textBlock } from '../../lib/notion/renderers'
 import getPageData from '../../lib/notion/getPageData'
 import React, { CSSProperties, useEffect } from 'react'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import getNotionUsers from '../../lib/notion/getNotionUsers'
-import { getBlogLink, getDateStr } from '../../lib/blog-helpers'
+import { getArticleLink, getDateStr } from '../../lib/article-helpers'
 
 // Get the data for each blog post
 export async function getStaticProps({ params: { slug }, preview }) {
@@ -20,12 +20,12 @@ export async function getStaticProps({ params: { slug }, preview }) {
   const post = postsTable[slug]
 
   // if we can't find the post or if it is unpublished and
-  // viewed without preview mode then we just redirect to /blog
+  // viewed without preview mode then we just redirect to /article
   if (!post || (post.Published !== 'Yes' && !preview)) {
     console.log(`Failed to find post for slug: ${slug}`)
     return {
       props: {
-        redirect: '/blog',
+        redirect: '/article',
         preview: false,
       },
       unstable_revalidate: 5,
@@ -76,7 +76,7 @@ export async function getStaticPaths() {
   return {
     paths: Object.keys(postsTable)
       .filter((post) => postsTable[post].Published === 'Yes')
-      .map((slug) => getBlogLink(slug)),
+      .map((slug) => getArticleLink(slug)),
     fallback: true,
   }
 }

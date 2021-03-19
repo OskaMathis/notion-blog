@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import getPageData from '../../lib/notion/getPageData'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
-import { getBlogLink } from '../../lib/blog-helpers'
+import { getArticleLink } from '../../lib/article-helpers'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (typeof req.query.token !== 'string') {
@@ -31,6 +31,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   res.setPreviewData({})
-  res.writeHead(307, { Location: getBlogLink(post.Slug) })
+  res.writeHead(307, { Location: getArticleLink(post.Slug) })
   res.end()
 }

@@ -1,14 +1,14 @@
 import Link from 'next/link'
 import Header from '../../components/header'
 
-import blogStyles from '../../styles/blog.module.css'
+import blogStyles from '../../styles/article.module.css'
 import sharedStyles from '../../styles/shared.module.css'
 
 import {
-  getBlogLink,
+  getArticleLink,
   getDateStr,
   postIsPublished,
-} from '../../lib/blog-helpers'
+} from '../../lib/article-helpers'
 import { textBlock } from '../../lib/notion/renderers'
 import getNotionUsers from '../../lib/notion/getNotionUsers'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
@@ -75,7 +75,7 @@ const Index = ({ posts = [], preview }) => {
                   {!post.Published && (
                     <span className={blogStyles.draftBadge}>Draft</span>
                   )}
-                  <Link href="/blog/[slug]" as={getBlogLink(post.Slug)}>
+                  <Link href="/article/[slug]" as={getArticleLink(post.Slug)}>
                     <a>{post.Page}</a>
                   </Link>
                 </span>
