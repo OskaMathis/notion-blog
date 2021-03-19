@@ -42,11 +42,12 @@ if (!BLOG_INDEX_ID) {
 }
 
 module.exports = {
-  experimental: {
-    modern: true,
-    async rewrites() {
-      return [{ source: '/atom', destination: '/api/atom' }]
-    },
-    catchAllRouting: true,
-  },
+  async rewrites() {
+    return [
+      {
+        source: '/atom',
+        destination: '/api/atom',
+      }
+    ]
+  }
 }
