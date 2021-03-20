@@ -1,14 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http'
-import { renderToStaticMarkup } from 'react-dom/server'
-
-import { textBlock } from '../../lib/notion/renderers'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import getNotionUsers from '../../lib/notion/getNotionUsers'
 import { postIsPublished, getArticleLink } from '../../lib/article-helpers'
-
-function mapToAuthor(author) {
-  return `<author><name>${author.full_name}</name></author>`
-}
 
 function decode(string) {
   return string
@@ -22,15 +15,11 @@ function decode(string) {
 function mapToEntry(post) {
   return `
     <entry>
-      <id>https://blog.oskamathis.dev${post.link}</id>
       <title>${decode(post.Page)}</title>
-      <link href="https://blog.oskamathis.dev${post.link}"/>
+      <link href="https://blog.oskamathis.dev${post.link}" rel="alternate" type="text/html"/>
+      <id>https://blog.oskamathis.dev${post.link}</id>
       <updated>${new Date(post.Date).toJSON()}</updated>
-      <content type="xhtml">
-        <div xmlns="http://www.w3.org/1999/xhtml">
-          ${renderToStaticMarkup(post.Excerpt)}
-        </div>
-      </content>
+      <published>${new Date(post.Date).toJSON()}</published>
     </entry>`
 }
 
@@ -41,15 +30,17 @@ function concat(total, item) {
 function createRSS(posts = []) {
   const postsString = posts.map(mapToEntry).reduce(concat, '')
 
-  return `<?xml version="1.0" encoding="utf-8"?>
-  <feed xmlns="http://www.w3.org/2005/Atom">
-    <title>My Notion Blog</title>
-    <subtitle>更新情報</subtitle>
-    <link href="https://blog.oskamathis.dev/atom" rel="self" type="application/rss+xml"/>
-    <link href="https://blog.oskamathis.dev" />
-    <updated>${new Date(posts[0].Date).toJSON()}</updated>
-    <id>blog.oskamathis.dev/atom</id>${postsString}
-  </feed>`
+  return `
+    <?xml version="1.0" encoding="utf-8"?>
+    <feed xmlns="http://www.w3.org/2005/Atom">
+      <title>My Notion Blog: 更新情報</title>
+      <subtitle>My Notion Blogの記事更新情報</subtitle>
+      <updated>${new Date(posts[0].Date).toJSON()}</updated>
+      <id>blog.oskamathis.dev/atom</id>
+      <link href="https://blog.oskamathis.dev" rel="alternate" type="text/html"/>
+      <link href="https://blog.oskamathis.dev/atom" rel="self" type="application/atom+xml"/>
+      ${postsString}
+    </feed>`
 }
 
 export default async function(req: IncomingMessage, res: ServerResponse) {
