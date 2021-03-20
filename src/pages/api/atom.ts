@@ -29,7 +29,7 @@ function concat(total, item) {
 function createRSS(posts = []) {
   const postsString = posts.map(mapToEntry).reduce(concat, '')
 
-  return `<?xml version="1.0" encoding="us-ascii"?>
+  return `<?xml version="1.0" encoding="utf-8"?>
   <feed xmlns="http://www.w3.org/2005/Atom">
     <title>My Notion Blog: 更新情報</title>
     <subtitle>My Notion Blogの記事更新情報</subtitle>
