@@ -30,17 +30,16 @@ function concat(total, item) {
 function createRSS(posts = []) {
   const postsString = posts.map(mapToEntry).reduce(concat, '')
 
-  return `
-    <?xml version="1.0" encoding="utf-8"?>
-    <feed xmlns="http://www.w3.org/2005/Atom">
-      <title>My Notion Blog: 更新情報</title>
-      <subtitle>My Notion Blogの記事更新情報</subtitle>
-      <updated>${new Date(posts[0].Date).toJSON()}</updated>
-      <id>blog.oskamathis.dev/atom</id>
-      <link href="https://blog.oskamathis.dev" rel="alternate" type="text/html"/>
-      <link href="https://blog.oskamathis.dev/atom" rel="self" type="application/atom+xml"/>
-      ${postsString}
-    </feed>`
+  return `<?xml version="1.0" encoding="utf-8"?>
+  <feed xmlns="http://www.w3.org/2005/Atom">
+    <title>My Notion Blog: 更新情報</title>
+    <subtitle>My Notion Blogの記事更新情報</subtitle>
+    <updated>${new Date(posts[0].Date).toJSON()}</updated>
+    <id>blog.oskamathis.dev/atom</id>
+    <link href="https://blog.oskamathis.dev" rel="alternate" type="text/html"/>
+    <link href="https://blog.oskamathis.dev/atom" rel="self" type="application/atom+xml"/>
+    ${postsString}
+  </feed>`
 }
 
 export default async function(req: IncomingMessage, res: ServerResponse) {
